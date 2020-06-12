@@ -1,43 +1,42 @@
 <template>
   <section class="src-components-usuarios">
     <div class="jumbotron mt-3">
-      <h2>Vista</h2>
+      <h2>Tareas</h2>
       <hr />
-
       <div>
         <table class="table table-sm">
           <tr class="table-success">
             <th>ID</th>
+            <th>Descripcion</th>
             <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Edad</th>
-            <th>Dirección</th>
             <th>E-mail</th>
-            <th>Teléfono</th>
+            <th>Creada</th>
           </tr>
-          <tr class="table-primary" v-for="(usuario, index) in this.$store.state.usuarios" :key="index">
+          <tr class="table-primary" v-for="(tarea, index) in tareas" :key="index">
             <td>{{index+1}}</td>
-            <td>{{usuario.nombre | pasarAmayuscula}}</td>
-            <td>{{usuario.apellido | pasarAmayuscula}}</td>
-            <td>{{usuario.edad}}</td>
-            <td>{{usuario.direccion}}</td>
-            <td>{{usuario.email}}</td>
-            <td>{{usuario.telefono}}</td>
+            <td>{{tarea.descripcion}}</td>
+            <td>{{tarea.nombre}}</td>
+            <td>{{tarea.email}}</td>
+            <td>{{tarea.createdAt | changeDate}}</td>
           </tr>
         </table>
       </div>
+      <hr />
+      <h2>Respuestas</h2>
+      <br>
+      <p>respuestas: 1-c, 2-c, 3-c, 4-b, 5-a, 6-b, 7-d, 8-d, 9-a, 10-b</p>
       <hr />
     </div>
   </section>
 </template>
 
 <script lang="js">
-  import { urlPosts } from '../urlS';
+
   export default  {
     name: 'src-components-usuarios',
-    props: [],
+    props: ['tareas'],
     mounted () {
-      this.getAxios()
+
     },
     data () {
       return {
@@ -45,15 +44,7 @@
       }
     },
     methods: {
-      getAxios(){
-        this.axios.get(urlPosts)
-        .then ( res =>{
-          this.$store.dispatch('dameUsers', res.data)
-          if (this.$store.state.usuarios == 0) {
-            alert("No hay usuarios cargados");           
-          }
-      })
-      }
+
       
     },
     computed: {
@@ -68,12 +59,12 @@
 .src-components-http {
 }
 .jumbotron {
-  background-color: #6699cc;
+  background-color: #6699CC;
   color: darkblue;
 }
 
 hr {
-  background-color: #fff275;
+  background-color: #FFF275;
 }
 </style>
 

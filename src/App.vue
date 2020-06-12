@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-    <Navbar />
-    <router-view></router-view>
+<Formulario/>
   </div>
 </template>
 
 <script>
-import Navbar from "./components/Navbar.vue";
+import Formulario from "./components/Formulario.vue";
 export default {
   name: "App",
   components: {
-    Navbar
+Formulario
   }
 };
 </script>

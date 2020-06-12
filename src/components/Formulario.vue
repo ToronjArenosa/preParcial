@@ -1,109 +1,134 @@
 <template>
-
- <section>
-  <div id="app" class="container">
-    <div class="jumbotron mt-3">
-      <h1>Formulario</h1>
-      <hr>
-      <vue-form :state="formState" @submit.prevent="enviar()">
-        <validate>
-          <input type="text" id="nombre" class="form-control" autocomplete="off" name="nombre"
-            v-model.trim="formData.nombre" placeholder="Nombre" required min-caracteres max-caracteres>
-          <field-messages name="nombre" show="$dirty">
-            <div slot="required" class="alert alert-danger d-inline-block">*Campo Requerido*</div>
-            <div slot="min-caracteres" class="alert alert-info my-1 d-inline-block">El nombre escrito debe tener al menos 5 caracteres</div>
-            <div slot="max-caracteres" class="alert alert-info my-1 d-inline-block">El nombre escrito debe tener como mucho 15 caracteres</div>
-          </field-messages>
-        </validate><br>
-           <validate>
-          <input type="text" id="apellido" class="form-control" autocomplete="off" name="apellido"
-            v-model.trim="formData.apellido" placeholder="Apellido" required min-caracteres max-caracteres>
-          <field-messages name="apellido" show="$dirty">
-            <div slot="required" class="alert alert-danger d-inline-block">*Campo Requerido*</div>
-            <div slot="min-caracteres" class="alert alert-info my-1 d-inline-block">El apellido escrito debe tener al menos 5 caracteres</div>
-            <div slot="max-caracteres" class="alert alert-info my-1 d-inline-block">El apellido escrito debe tener como mucho 15 caracteres</div>
-          </field-messages>
-        </validate><br>
-        <validate>
-          <input type="number" id="edad" class="form-control" autocomplete="off" name="edad"
-            v-model.trim="formData.edad" placeholder="Edad" required min="18" max="120">
-          <field-messages name="edad" show="$dirty">
-            <div slot="required" class="alert alert-danger d-inline-block">*Campo Requerido*</div>
-            <div slot="min" class="alert alert-info my-1 d-inline-block">La edad mínima es de 18</div>
-            <div slot="max" class="alert alert-info my-1 d-inline-block">La edad máxima es de 120</div>
-          </field-messages>
-        </validate><br>
-           <validate>
-          <input type="text" id="direccion" class="form-control" autocomplete="off" name="direccion"
-            v-model.trim="formData.direccion" placeholder="Dirección" required min-caracteres max-caracteres>
-          <field-messages name="direccion" show="$dirty">
-            <div slot="required" class="alert alert-danger d-inline-block">*Campo Requerido*</div>
-          </field-messages>
-        </validate><br>
-        <validate>
-          <input type="email" id="email" class="form-control" autocomplete="off" name="email"
-            v-model.trim="formData.email" placeholder="E-mail" required valid-mail>
-          <field-messages name="email" show="$dirty">
-            <div style="height: 25px" slot="required" class="alert alert-danger d-inline-block">*Campo Requerido*</div>
-            <div slot="valid-mail" class="alert alert-warning my-1 d-inline-block">El mail debe pertenecer al dominio "tp.ort"</div>
-          </field-messages>
-        </validate><br>
-           <validate>
-           <input type="number" id="telefono" class="form-control" autocomplete="off" name="telefono"
-            v-model.trim="formData.telefono" placeholder="Teléfono" required valid-phone>
-          <field-messages name="telefono" show="$dirty">
-            <div slot="required" class="alert alert-danger d-inline-block">*La característica solicitada es INEXISTENTE*</div>
-            <div slot="valid-phone" class="alert alert-warning my-1 d-inline-block">El numero de Teléfono debe ser de Buenos Aires, Argentina (05415)</div>
-          </field-messages>
-        </validate><br>
-        <button class="btn btn-success my-4" :disabled="formState.$invalid" type="submit">Enviar</button>
-      </vue-form>
+  <section>
+    <div id="app" class="container">
+      <div class="jumbotron mt-3">
+        <h1>Formulario</h1>
+        <hr />
+        <vue-form :state="formState" @submit.prevent="enviar()">
+          <validate>
+            <input
+              type="text"
+              id="descripción"
+              class="form-control"
+              autocomplete="off"
+              name="descripción"
+              v-model.trim="formData.descripción"
+              placeholder="Descripción"
+              required
+              min-caracteres
+              max-caracteres
+            />
+            <field-messages name="descripción" show="$dirty">
+              <div slot="required" class="alert alert-danger d-inline-block">*Campo Requerido*</div>
+              <div
+                slot="min-caracteres"
+                class="alert alert-info my-1 d-inline-block"
+              >La descripción debe tener al menos 10 caracteres</div>
+              <div
+                slot="max-caracteres"
+                class="alert alert-info my-1 d-inline-block"
+              >La descripción debe tener como mucho 50 caracteres</div>
+            </field-messages>
+          </validate>
+          <br />
+          <validate>
+            <input
+              type="text"
+              id="nombre"
+              class="form-control"
+              autocomplete="off"
+              name="nombre"
+              v-model.trim="formData.nombre"
+              placeholder="Nombre"
+              required
+              min-caracteres
+              max-caracteres
+            />
+            <field-messages name="nombre" show="$dirty">
+              <div slot="required" class="alert alert-danger d-inline-block">*Campo Requerido*</div>
+            </field-messages>
+          </validate>
+          <br />
+          <validate>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              autocomplete="off"
+              name="email"
+              v-model.trim="formData.email"
+              placeholder="E-mail"
+              required
+              valid-mail
+            />
+            <field-messages name="email" show="$dirty">
+              <div
+                style="height: 25px"
+                slot="required"
+                class="alert alert-danger d-inline-block"
+              >*Campo Requerido*</div>
+              <div slot="email" class="alert alert-warning my-1 d-inline-block">Email no válido</div>
+            </field-messages>
+          </validate>
+          <button class="btn btn-success my-4" type="submit">Enviar</button>
+        </vue-form>
+      </div>
+      <div>
+            <Vista :tareas="tareas" />
+      </div>
     </div>
-  </div>
-</section>
-
+  </section>
 </template>
 
 <script lang="js">
   import { urlPosts } from '../urlS';
-  import axios from 'axios'
+  import Vista from './Vista.vue'
   export default {
   name: 'src-components-formulario',
-  components: {},
+  components: {
+    Vista
+  },
   props: [],
   data() {
     return {
       formState: {},
-      formData: this.getInitialData()    }
+      formData: this.getInitialData()    ,
+              tareas: []
+    }
   },
   computed: {
 
   },
   mounted() {
-
+      this.getAxios()
   },
   methods: {
     getInitialData() {
       return {
+        descripción: '',
         nombre: '',
-        apellido: '',
-        edad: '',
-        direccion: '',
-        email: '',
-        telefono: ''
+        email: ''
       }
     },
     enviar() {
       console.log(this.formData)
-      axios.post(urlPosts, this.formData, {
+      this.axios.post(urlPosts, this.formData, {
         'content-type' : 'application/json'
       })
       .then(res =>{
         console.log(res.data)
+        this.getAxios()
       })
+      
       this.formData = this.getInitialData()
       this.formState._reset()
-    }
+    },
+      getAxios(){
+        this.axios.get(urlPosts)
+        .then ( res =>{
+          this.tareas = res.data
+      })
+      }
   }
 }
 
